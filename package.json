@@ -1,0 +1,19 @@
+{
+  "name": "testautoversionupdate",
+  "version": "1.23.133",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chengxuan/testautoversionupdate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chengxuan/testautoversionupdate/issues"
+  },
+  "homepage": "https://github.com/Chengxuan/testautoversionupdate#readme"
+}
