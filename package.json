@@ -1,6 +1,6 @@
 {
   "name": "testautoversionupdate",
-  "version": "1.23.333",
+  "version": "1.23.0",
   "description": "",
   "main": "index.js",
   "scripts": {
