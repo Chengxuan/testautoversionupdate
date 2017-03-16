@@ -13,12 +13,12 @@ script:
 deploy:
 - provider: script
   skip_cleanup: true
-  script: 
-   - git remote rm origin
-   - git remote add origin https://Chengxuan:${GITHUB_TOCKEN}@github.com/Chengxuan/testautoversionupdate.git
-   - git push --tags
+  script:
+  - git remote rm origin
+  - git remote add origin https://Chengxuan:${GH_TOCKEN}@github.com/Chengxuan/testautoversionupdate.git
+  - git push --tags
   on:
     branch: master
 env:
- global:
-  secure: QpljrGP1pqG031vU7fP6YokMzaW5j4lgN+BH59BXEuw8krSeMGLNY0d/iLeLE0MFQwjWNhENhIsaO8v4jC7g/inv6B1Bvx3fBy9/rx0WGcprETNFera4C3ASoSxjnuM3UrgY2jobkqwPMHx4b+UgkSJvjz0AKWMBX8tq2x4NbFuDadhOQlCbdqSOQPkwOGtUh5py3NtC7fg2iE4NpWhuDQjqCJm3MVbqj68kg/IdxaNOzbs+8/KKvXT+cY0cq/xY17x5OgZg5OIITkPpQXX7/svuAeBYXY4TY6c09ZkPHtXsfkrvpRnTAYcbN5NGQ7jncFW1/pZQNfpl1dI8TCZvXvccznE5JYKbwadr4Nv1NxZBC+MCJ3N2FGCIC/42r9GsVhpd7ljUa1Ni6SnDKee4CruHHlgVLc5sFIOIlwgkfh9uH/Yqs26EfLu3FQBqbv0CXH4oOwjV0e3U3wiQPmL+N9iALxgVSW+1V6fZt9yWgUxGeus8h4btqvcK4uxUj5tingHxTm5qEUDXrfywl5y5awE2poW+4CkipVVUAOZIEoSKsSpVYKnUoZa0Wel5QBZYjhx40C9Fe2f6gD8qi5o46uFn/mNDgMmujSHpnv4sGcNqlOSD0Ri54IRZT54lbsp/CClfTr0paq4mNub8x8sz6lPoqqsB5qu6KTsKpZOF3cc=
+  global:
+    secure: YD9BaD0/Hkh+8VlvMy62oE1tTqgU1HtmvJHQtFEqNWGjGLGmQbC0pxI1CfuXM8zvrJ+xIbYlcolnv3EEjcmCPZW7HUedZaHLhWY6eJGARbdMES1iIg0VLXYqBFBTJvs2fqcX7I53gXO58BrsoXc5FWUh9HJ4DbtT+CGUq/lwg//Soe9SITVmUTdNmZ27E1yjEgOhenEftqIB4TsIF/L+Xl/lqkUWojQmmETzo452jF8ed4zj7h63d1vctM8xSiFZtryIutbD8rEh2nubaSVzqlILZJJnqPQtRM5NED0VYRUa8FjwvDhyPfEvUUjerS6/UVlJ5Jn/edv7rwnUmpohsC8nv3rOr+FoFISWx2MKex+86KkItx8qUBfp0qcc39Gbcdg8XneVobC6El8EHMV+/JCuBqpKeuJ9tvK94+ngHqItTRghaPpy4Gky4ULZo3X4p3kSraUbHZChFRf9v0a0y9J2IbaNYpjFVcIWArotqwSkoLd0ydFqfbgP2upTBn06yb31qm5HTfAUERtxv0jUHpTA8UOhQN81T6a3S6ddrSontvlATrXLnPnVewKQdtSdsj4aVqOGR8fhBhALC+j9qQ51Uffiq16Ko6836d8ZWPM5p4opkO849JORL4c8WC5N/mzSxPBH69bwh0kDLn54JuQfaUZOe/4viBkB0BKviW8=
