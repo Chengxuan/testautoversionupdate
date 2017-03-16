@@ -1,26 +1,23 @@
-env:
-  global:
-    secure: 45e5e2694d355ffb25f43192dd33bfdb1bc22152
-# This is needed to avoid building all the tags pushed by travis
 branches:
   except:
-   - /^v?\d+\.\d+\.\d+$/
-
+  - /^v?\d+\.\d+\.\d+$/
 before_install:
- - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-  # Create a git tag of the new version to use
-  # If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
- - git config --global user.email "xcxncu@gmail.com"
- - git config --global user.name "Cheng"
- - "{ sed -nE 's/^[ \\t]*\"version\": \"([0-9]{1,}\\.[0-9]{1,}\\.)[0-9x]{1,}\",$/\\1/p' package.json; git describe --abbrev=0 | sed -E 's/^v([0-9]{1,}\\.[0-9]{1,}\\.)([0-9]{1,})$/\\1 \\2/g'; } | tr \"\\n\" \" \" | awk '{printf($1==$2?\"v\"$2$3+1:\"v\"$1\"0\")}' | xargs -I {} git tag -a {} -m \"{}\"\n"
-  # Update package.json based on the git tag we just created
- - npm --no-git-tag-version version from-git
+- if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+- git config --global user.email "xcxncu@gmail.com"
+- git config --global user.name "Cheng"
+- |
+  { sed -nE 's/^[ \t]*"version": "([0-9]{1,}\.[0-9]{1,}\.)[0-9x]{1,}",$/\1/p' package.json; git describe --abbrev=0 | sed -E 's/^v([0-9]{1,}\.[0-9]{1,}\.)([0-9]{1,})$/\1 \2/g'; } | tr "\n" " " | awk '{printf($1==$2?"v"$2$3+1:"v"$1"0")}' | xargs -I {} git tag -a {} -m "{}"
+- npm --no-git-tag-version version from-git
 script:
- - npm run test 
-# Push the new tag back to GitHub but only if on the master branch
+- npm run test
 deploy:
- - provider: script
-   skip_cleanup: true
-   script: git push --tags
-   on:
-     branch: master
+- provider: script
+  skip_cleanup: true
+  script: 
+   - git remote rm origin
+   - git remote add origin https://Chengxuan:${GITHUB_TOCKEN}@github.com/Chengxuan/testautoversionupdate.git
+   - git push --tags
+  on:
+    branch: master
+
+  secure: QpljrGP1pqG031vU7fP6YokMzaW5j4lgN+BH59BXEuw8krSeMGLNY0d/iLeLE0MFQwjWNhENhIsaO8v4jC7g/inv6B1Bvx3fBy9/rx0WGcprETNFera4C3ASoSxjnuM3UrgY2jobkqwPMHx4b+UgkSJvjz0AKWMBX8tq2x4NbFuDadhOQlCbdqSOQPkwOGtUh5py3NtC7fg2iE4NpWhuDQjqCJm3MVbqj68kg/IdxaNOzbs+8/KKvXT+cY0cq/xY17x5OgZg5OIITkPpQXX7/svuAeBYXY4TY6c09ZkPHtXsfkrvpRnTAYcbN5NGQ7jncFW1/pZQNfpl1dI8TCZvXvccznE5JYKbwadr4Nv1NxZBC+MCJ3N2FGCIC/42r9GsVhpd7ljUa1Ni6SnDKee4CruHHlgVLc5sFIOIlwgkfh9uH/Yqs26EfLu3FQBqbv0CXH4oOwjV0e3U3wiQPmL+N9iALxgVSW+1V6fZt9yWgUxGeus8h4btqvcK4uxUj5tingHxTm5qEUDXrfywl5y5awE2poW+4CkipVVUAOZIEoSKsSpVYKnUoZa0Wel5QBZYjhx40C9Fe2f6gD8qi5o46uFn/mNDgMmujSHpnv4sGcNqlOSD0Ri54IRZT54lbsp/CClfTr0paq4mNub8x8sz6lPoqqsB5qu6KTsKpZOF3cc=
