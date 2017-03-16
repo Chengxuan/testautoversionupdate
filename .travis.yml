@@ -1,3 +1,6 @@
+env:
+  global:
+    secure: 45e5e2694d355ffb25f43192dd33bfdb1bc22152
 # This is needed to avoid building all the tags pushed by travis
 branches:
   except:
