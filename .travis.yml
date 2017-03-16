@@ -7,17 +7,15 @@ before_install:
 - git config --global user.name "Cheng"
 - git remote rm origin
 - git remote add origin https://Chengxuan:${GH_TOCKEN}@github.com/Chengxuan/testautoversionupdate.git
+script:
+- npm run test
+after_success:
+- test $TRAVIS_BRANCH = “master” || exit 1
 - |
   { sed -nE 's/^[ \t]*"version": "([0-9]{1,}\.[0-9]{1,}\.)[0-9x]{1,}",$/\1/p' package.json; git describe --abbrev=0 | sed -E 's/^v([0-9]{1,}\.[0-9]{1,}\.)([0-9]{1,})$/\1 \2/g'; } | tr "\n" " " | awk '{printf($1==$2?"v"$2$3+1:"v"$1"0")}' | xargs -I {} git tag -a {} -m "{}"
 - npm --no-git-tag-version version from-git
-script:
-- npm run test
-deploy:
-- provider: script
-  skip_cleanup: true
-  script: git push origin master; git push --tags
-  on:
-    branch: master
+- git push
+- git push —-tags
 env:
   global:
     secure: YD9BaD0/Hkh+8VlvMy62oE1tTqgU1HtmvJHQtFEqNWGjGLGmQbC0pxI1CfuXM8zvrJ+xIbYlcolnv3EEjcmCPZW7HUedZaHLhWY6eJGARbdMES1iIg0VLXYqBFBTJvs2fqcX7I53gXO58BrsoXc5FWUh9HJ4DbtT+CGUq/lwg//Soe9SITVmUTdNmZ27E1yjEgOhenEftqIB4TsIF/L+Xl/lqkUWojQmmETzo452jF8ed4zj7h63d1vctM8xSiFZtryIutbD8rEh2nubaSVzqlILZJJnqPQtRM5NED0VYRUa8FjwvDhyPfEvUUjerS6/UVlJ5Jn/edv7rwnUmpohsC8nv3rOr+FoFISWx2MKex+86KkItx8qUBfp0qcc39Gbcdg8XneVobC6El8EHMV+/JCuBqpKeuJ9tvK94+ngHqItTRghaPpy4Gky4ULZo3X4p3kSraUbHZChFRf9v0a0y9J2IbaNYpjFVcIWArotqwSkoLd0ydFqfbgP2upTBn06yb31qm5HTfAUERtxv0jUHpTA8UOhQN81T6a3S6ddrSontvlATrXLnPnVewKQdtSdsj4aVqOGR8fhBhALC+j9qQ51Uffiq16Ko6836d8ZWPM5p4opkO849JORL4c8WC5N/mzSxPBH69bwh0kDLn54JuQfaUZOe/4viBkB0BKviW8=
