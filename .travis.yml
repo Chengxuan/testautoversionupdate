@@ -13,7 +13,7 @@ script:
 deploy:
 - provider: script
   skip_cleanup: true
-  script: git remote rm origin;git remote add origin https://Chengxuan:${GH_TOCKEN}@github.com/Chengxuan/testautoversionupdate.git;git push --tags
+  script: git remote rm origin;git remote add origin https://Chengxuan:${GH_TOCKEN}@github.com/Chengxuan/testautoversionupdate.git;git push --tags;git push origin master
   on:
     branch: master
 env:
